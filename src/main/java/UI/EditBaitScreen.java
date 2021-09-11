@@ -5,7 +5,8 @@
  */
 package UI;
 
-import Backend.LocationManager;
+import Backend.BaitManager;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -13,19 +14,20 @@ import javax.swing.JOptionPane;
  *
  * @author Murrayy
  */
-public class EditLocationScreen extends javax.swing.JFrame {
+public class EditBaitScreen extends javax.swing.JFrame {
 
     /**
-     * Creates new form EditLocationScreen
+     * Creates new form EditBaitScreen
      */
-    public EditLocationScreen() {
+    public EditBaitScreen() {
         initComponents();
+
         DefaultListModel<String> listModel = new DefaultListModel<String>();
-        String[] location = LocationManager.getLocationAsArray();
-        for (int i = 0; i < location.length; i++) {
-            listModel.addElement(location[i]);
+        String[] bait = BaitManager.getAllBaitAsArray();
+        for (int i = 0; i < bait.length; i++) {
+            listModel.addElement(bait[i]);
         }
-        locationList.setModel(listModel);
+        baitList.setModel(listModel);
     }
 
     /**
@@ -37,18 +39,55 @@ public class EditLocationScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        editBaitLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        baitList = new javax.swing.JList<>();
+        editBaitTextField = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        locationList = new javax.swing.JList<>();
-        editLocationLabel = new javax.swing.JLabel();
-        editLocationTextField = new javax.swing.JTextField();
         homeButton = new javax.swing.JButton();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        editBaitLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 18)); // NOI18N
+        editBaitLabel.setText("EDIT BAIT");
+        editBaitLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        baitList.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
+        baitList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        baitList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        baitList.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                baitListAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane1.setViewportView(baitList);
+
         addButton.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
-        addButton.setText("Add");
+        addButton.setText("ADD");
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButtonActionPerformed(evt);
@@ -56,29 +95,10 @@ public class EditLocationScreen extends javax.swing.JFrame {
         });
 
         deleteButton.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
-        deleteButton.setText("Delete");
+        deleteButton.setText("DELETE");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteButtonActionPerformed(evt);
-            }
-        });
-
-        locationList.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
-        locationList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        locationList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(locationList);
-
-        editLocationLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 18)); // NOI18N
-        editLocationLabel.setText("EDIT LOCATION");
-        editLocationLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        editLocationTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editLocationTextFieldActionPerformed(evt);
             }
         });
 
@@ -97,17 +117,17 @@ public class EditLocationScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(editLocationTextField))
+                                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(editBaitTextField))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(editLocationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editBaitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(homeButton))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -116,17 +136,17 @@ public class EditLocationScreen extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(editLocationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(editBaitLabel)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(editLocationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addComponent(editBaitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(homeButton)
                 .addContainerGap())
         );
@@ -134,52 +154,52 @@ public class EditLocationScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void editLocationTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editLocationTextFieldActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_editLocationTextFieldActionPerformed
-
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-         String newlocation = editLocationTextField.getText();
+        String newbait = editBaitTextField.getText();
 
-        LocationManager.addLocation(newlocation);
+        BaitManager.addBait(newbait);
         
         
         DefaultListModel<String> listModel = new DefaultListModel<String>();
         
-        String[] location = LocationManager.getLocationAsArray();
-        for (int i = 0; i < location.length; i++) {
-            listModel.addElement(location[i]);
+        String[] bait = BaitManager.getAllBaitAsArray();
+        for (int i = 0; i < bait.length; i++) {
+            listModel.addElement(bait[i]);
         }
-        locationList.setModel(listModel);
+        baitList.setModel(listModel);
         
         
         
-        JOptionPane.showMessageDialog(this, "Location added successfully!");
+        JOptionPane.showMessageDialog(this, "Bait added successfully!");
 
-        editLocationTextField.setText("");
+        editBaitTextField.setText("");
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
-        String name = locationList.getSelectedValue();
+        String name = baitList.getSelectedValue();
 		
 
 		//Use the backend to manipulate the textfile data
-               
-		LocationManager.deleteLocation(name);
+		BaitManager.deleteBait(name);
 
 		//Use the backend to update the frontend
-		String allLocation = LocationManager.getLocation();
+		String allBait = BaitManager.getAllBait();
 		
                  DefaultListModel<String> listModel = new DefaultListModel<String>();
-        String[] location = LocationManager.getLocationAsArray();
-        for (int i = 0; i < location.length; i++) {
-            listModel.addElement(location[i]);
+        String[] bait = BaitManager.getAllBaitAsArray();
+        for (int i = 0; i < bait.length; i++) {
+            listModel.addElement(bait[i]);
         }
-        locationList.setModel(listModel);      
+        baitList.setModel(listModel);                                    
+
     }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void baitListAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_baitListAncestorAdded
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_baitListAncestorAdded
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         // TODO add your handling code here:
@@ -207,31 +227,33 @@ public class EditLocationScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditLocationScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditBaitScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditLocationScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditBaitScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditLocationScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditBaitScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditLocationScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditBaitScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditLocationScreen().setVisible(true);
+                new EditBaitScreen().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JList<String> baitList;
     private javax.swing.JButton deleteButton;
-    private javax.swing.JLabel editLocationLabel;
-    private javax.swing.JTextField editLocationTextField;
+    private javax.swing.JLabel editBaitLabel;
+    private javax.swing.JTextField editBaitTextField;
     private javax.swing.JButton homeButton;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> locationList;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

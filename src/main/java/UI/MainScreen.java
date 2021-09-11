@@ -27,43 +27,56 @@ public class MainScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        logSessionButton = new javax.swing.JButton();
+        editLocationButton = new javax.swing.JButton();
+        editSpeciesButton = new javax.swing.JButton();
+        viewStatsButton = new javax.swing.JButton();
+        editBaitButton = new javax.swing.JButton();
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
-        jButton1.setText("Log Session");
-
-        jButton2.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
-        jButton2.setText("Edit location");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        logSessionButton.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
+        logSessionButton.setText("Log Session");
+        logSessionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                logSessionButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
-        jButton3.setText("Edit Species");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        editLocationButton.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
+        editLocationButton.setText("Edit location");
+        editLocationButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                editLocationButtonActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
-        jButton4.setText("View Stats");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        editSpeciesButton.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
+        editSpeciesButton.setText("Edit Species");
+        editSpeciesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                editSpeciesButtonActionPerformed(evt);
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
-        jButton5.setText("Edit Bait/Trace/Lure");
+        viewStatsButton.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
+        viewStatsButton.setText("View Stats");
+        viewStatsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewStatsButtonActionPerformed(evt);
+            }
+        });
+
+        editBaitButton.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
+        editBaitButton.setText("Edit Bait/Trace/Lure");
+        editBaitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBaitButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,13 +85,13 @@ public class MainScreen extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(editBaitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                    .addComponent(editSpeciesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editLocationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(logSessionButton, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(viewStatsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
@@ -86,31 +99,59 @@ public class MainScreen extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(126, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(editLocationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logSessionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(editSpeciesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewStatsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(editBaitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void editSpeciesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSpeciesButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        dispose();
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+		//create a new main menu screen.
+		new EditSpeciesScreen().setVisible(true);
+    }//GEN-LAST:event_editSpeciesButtonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void editLocationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editLocationButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        dispose();
+
+		//create a new main menu screen.
+		new EditLocationScreen().setVisible(true);
+    }//GEN-LAST:event_editLocationButtonActionPerformed
+
+    private void viewStatsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStatsButtonActionPerformed
+        // TODO add your handling code here:
+        dispose();
+
+		//create a new main menu screen.
+		new ViewStatsScreen().setVisible(true);
+    }//GEN-LAST:event_viewStatsButtonActionPerformed
+
+    private void logSessionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logSessionButtonActionPerformed
+        // TODO add your handling code here:
+        dispose();
+
+		//create a new main menu screen.
+		new LogSessionScreen().setVisible(true);
+    }//GEN-LAST:event_logSessionButtonActionPerformed
+
+    private void editBaitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBaitButtonActionPerformed
+        // TODO add your handling code here:
+        dispose();
+
+		//create a new main menu screen.
+		new EditBaitScreen().setVisible(true);
+    }//GEN-LAST:event_editBaitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,10 +189,11 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton editBaitButton;
+    private javax.swing.JButton editLocationButton;
+    private javax.swing.JButton editSpeciesButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton logSessionButton;
+    private javax.swing.JButton viewStatsButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,6 +9,9 @@ package Backend;
  *
  * @author Murrayy
  */
-public class Test {
-    
+public class NewClass {
+    public static void main(String[] args) {
+        String bait = BaitManager.getAllBait();
+        System.out.println(bait);
+    }
 }

@@ -5,6 +5,14 @@
  */
 package UI;
 
+import Backend.LocationManager;
+import Backend.BaitManager;
+import Backend.LogSessionManager;
+import Backend.SpeciesManager;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Murrayy
@@ -15,7 +23,50 @@ public class LogSessionScreen extends javax.swing.JFrame {
      * Creates new form LogSessionScreen
      */
     public LogSessionScreen() {
+
         initComponents();
+
+        setLocationRelativeTo(null);
+        
+        //location visited
+        DefaultComboBoxModel<String> model1 = new DefaultComboBoxModel<String>();
+        String[] location = LocationManager.getLocationAsArray();
+        for (int i = 0; i < location.length; i++) {
+            model1.addElement(location[i]);
+        }
+        locationComboBox.setModel(model1);
+        
+        //target species
+        DefaultComboBoxModel<String> model2 = new DefaultComboBoxModel<String>();
+        String[] species = SpeciesManager.getAllSpeciesAsArray();
+        for (int i = 0; i < species.length; i++) {
+            model2.addElement(species[i]);
+        }
+        targetSpeciesComboBox.setModel(model2);
+        
+        //bait used
+        DefaultComboBoxModel<String> model3 = new DefaultComboBoxModel<String>();
+        String[] bait = BaitManager.getAllBaitAsArray();
+        for (int i = 0; i < bait.length; i++) {
+            model3.addElement(bait[i]);
+        }
+        baitComboBox.setModel(model3);
+        
+        //species caught
+        DefaultListModel<String> model4 = new DefaultListModel<String>();
+         String[] speciescaught = SpeciesManager.getAllSpeciesAsArray();
+        for (int i = 0; i < species.length; i++) {
+            model4.addElement(species[i]);
+        }
+        speciesList.setModel(model4);
+        
+         DefaultComboBoxModel<String> model5 = new DefaultComboBoxModel<String>();
+         model5.addElement("Clear"); 
+         model5.addElement("Overcast"); 
+         model5.addElement("Raining"); 
+         model5.addElement("Stormy"); 
+         weatherComboBox.setModel(model5);
+        
     }
 
     /**
@@ -45,8 +96,14 @@ public class LogSessionScreen extends javax.swing.JFrame {
         arrivalTimeLabel = new javax.swing.JLabel();
         fishCaughtTextField = new javax.swing.JTextField();
         cancelButton = new javax.swing.JButton();
-        addImageLabel = new javax.swing.JLabel();
-        addImageTextField = new javax.swing.JTextField();
+        userLabel = new javax.swing.JLabel();
+        saveSessionButton = new javax.swing.JButton();
+        userNameComboBox = new javax.swing.JComboBox<>();
+        weatherLabel = new javax.swing.JLabel();
+        weatherComboBox = new javax.swing.JComboBox<>();
+        dateLabel = new javax.swing.JLabel();
+        dateTextField = new javax.swing.JTextField();
+        jSpinner1 = new javax.swing.JSpinner();
 
         jTextField2.setText("jTextField2");
 
@@ -83,10 +140,14 @@ public class LogSessionScreen extends javax.swing.JFrame {
         speciesCaughtLabel.setText("SPECIES CAUGHT:");
 
         timeSpentLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
-        timeSpentLabel.setText("TIME SPENT: ");
+        timeSpentLabel.setText("TIME SPENT (HOURS): ");
 
         timeSpentTextField.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
-        timeSpentTextField.setText(" ");
+        timeSpentTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timeSpentTextFieldActionPerformed(evt);
+            }
+        });
 
         fishAmountLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
         fishAmountLabel.setText("AMOUNT OF FISH CAUGHT: ");
@@ -100,19 +161,49 @@ public class LogSessionScreen extends javax.swing.JFrame {
         jScrollPane2.setViewportView(speciesList);
 
         arrivalTimeTextField.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
-        arrivalTimeTextField.setText(" ");
+        arrivalTimeTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                arrivalTimeTextFieldActionPerformed(evt);
+            }
+        });
 
         arrivalTimeLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
         arrivalTimeLabel.setText("TIME OF ARRIVAL: ");
 
         fishCaughtTextField.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
-        fishCaughtTextField.setText(" ");
 
         cancelButton.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
         cancelButton.setText("CANCEL");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
-        addImageLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
-        addImageLabel.setText("ADD IMAGE: ");
+        userLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
+        userLabel.setText("USERNAME:");
+
+        saveSessionButton.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
+        saveSessionButton.setText("SAVE SESSION");
+        saveSessionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveSessionButtonActionPerformed(evt);
+            }
+        });
+
+        userNameComboBox.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
+        userNameComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        weatherLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
+        weatherLabel.setText("WEATHER CONDITIONS:");
+
+        weatherComboBox.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
+        weatherComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        dateLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
+        dateLabel.setText("DATE:");
+
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,56 +212,77 @@ public class LogSessionScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logSessionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(logSessionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(userLabel)
+                        .addGap(10, 10, 10)
+                        .addComponent(userNameComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(baitLabel)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(locationLabel)
-                                        .addComponent(targetSpeciesLabel)))
+                                        .addComponent(targetSpeciesLabel)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(dateLabel)
+                                            .addComponent(locationLabel))))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(timeSpentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(baitComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(targetSpeciesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(locationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(locationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(dateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
-                                        .addComponent(speciesCaughtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(speciesCaughtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(baitComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(targetSpeciesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(addImageLabel)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(25, 25, 25)
+                                        .addComponent(arrivalTimeLabel))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(fishAmountLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(timeSpentLabel))
+                                    .addComponent(weatherLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(arrivalTimeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                                        .addComponent(fishCaughtTextField))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(weatherComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(timeSpentTextField, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cancelButton)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(fishAmountLabel)
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(timeSpentLabel)
-                            .addComponent(arrivalTimeLabel))
-                        .addGap(66, 66, 66)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(arrivalTimeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                    .addComponent(fishCaughtTextField)
-                    .addComponent(addImageTextField))
+                            .addComponent(cancelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(saveSessionButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(logSessionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(userLabel)
+                            .addComponent(userNameComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(logSessionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(dateLabel)
+                            .addComponent(dateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(locationLabel)
@@ -183,26 +295,32 @@ public class LogSessionScreen extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(baitComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(baitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(timeSpentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(timeSpentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(arrivalTimeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(arrivalTimeLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fishCaughtTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fishAmountLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(baitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(weatherLabel)
+                            .addComponent(weatherComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(saveSessionButton)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(timeSpentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(timeSpentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(arrivalTimeLabel)
+                            .addComponent(arrivalTimeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(7, 7, 7)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
-                    .addComponent(addImageLabel)
-                    .addComponent(addImageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addComponent(fishCaughtTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fishAmountLabel))
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -211,6 +329,39 @@ public class LogSessionScreen extends javax.swing.JFrame {
     private void locationComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_locationComboBoxActionPerformed
+
+    private void timeSpentTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeSpentTextFieldActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_timeSpentTextFieldActionPerformed
+
+    private void saveSessionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveSessionButtonActionPerformed
+        // TODO add your handling code here:
+        
+        
+        String userName = (String)userNameComboBox.getSelectedItem();
+        String targetSpecies = (String)targetSpeciesComboBox.getSelectedItem();
+        String location = (String)locationComboBox.getSelectedItem();
+        String baitUsed = (String)baitComboBox.getSelectedItem();
+        String speciesCaught = (String)speciesList.getSelectedValue();
+        String timeSpent = timeSpentTextField.getText();
+        String timeOfArrival = arrivalTimeTextField.getText();
+        String amountFish = fishCaughtTextField.getText();
+        String date = dateTextField.getText();
+        
+        LogSessionManager.logSession(date,userName,targetSpecies,location,baitUsed,timeSpent,timeOfArrival,amountFish,speciesCaught);
+        JOptionPane.showMessageDialog(this, "Session saved successfully!");
+    }//GEN-LAST:event_saveSessionButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new  MainScreen().setVisible(true);
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void arrivalTimeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrivalTimeTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_arrivalTimeTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,29 +395,36 @@ public class LogSessionScreen extends javax.swing.JFrame {
             public void run() {
                 new LogSessionScreen().setVisible(true);
             }
-        });
+            });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel addImageLabel;
-    private javax.swing.JTextField addImageTextField;
     private javax.swing.JLabel arrivalTimeLabel;
     private javax.swing.JTextField arrivalTimeTextField;
     private javax.swing.JComboBox<String> baitComboBox;
     private javax.swing.JLabel baitLabel;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel dateLabel;
+    private javax.swing.JTextField dateTextField;
     private javax.swing.JLabel fishAmountLabel;
     private javax.swing.JTextField fishCaughtTextField;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JComboBox<String> locationComboBox;
     private javax.swing.JLabel locationLabel;
     private javax.swing.JLabel logSessionLabel;
+    private javax.swing.JButton saveSessionButton;
     private javax.swing.JLabel speciesCaughtLabel;
     private javax.swing.JList<String> speciesList;
     private javax.swing.JComboBox<String> targetSpeciesComboBox;
     private javax.swing.JLabel targetSpeciesLabel;
     private javax.swing.JLabel timeSpentLabel;
     private javax.swing.JTextField timeSpentTextField;
+    private javax.swing.JLabel userLabel;
+    private javax.swing.JComboBox<String> userNameComboBox;
+    private javax.swing.JComboBox<String> weatherComboBox;
+    private javax.swing.JLabel weatherLabel;
     // End of variables declaration//GEN-END:variables
+
 }

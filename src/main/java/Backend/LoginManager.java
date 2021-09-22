@@ -9,6 +9,8 @@ package Backend;
  *
  * @author Murrayy
  */
-public class User {
+public class LoginManager {
+
+    
     
 }

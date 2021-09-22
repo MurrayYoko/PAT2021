@@ -5,6 +5,12 @@
  */
 package UI;
 
+import Backend.BaitManager;
+import Backend.LocationManager;
+import Backend.LogSessionManager;
+import Backend.SpeciesManager;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 /**
  *
  * @author Murrayy
@@ -16,6 +22,12 @@ public class ViewStatsScreen extends javax.swing.JFrame {
      */
     public ViewStatsScreen() {
         initComponents();
+        
+        String sessions = LogSessionManager.getAllSessions();
+        sessionsTextArea.setText(sessions);
+        
+        totalFish = LogSessionManager.getAllFish().toString();
+       totalFishLabel.setText(LogSessionManager.getAllFish());
     }
 
     /**
@@ -33,17 +45,19 @@ public class ViewStatsScreen extends javax.swing.JFrame {
         jTextArea2 = new javax.swing.JTextArea();
         viewStatsLabel = new javax.swing.JLabel();
         totalFishLabel = new javax.swing.JLabel();
-        placesVisitedLabel = new javax.swing.JLabel();
         speciesCaughtLabel = new javax.swing.JLabel();
-        baitUsedLabel = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea4 = new javax.swing.JTextArea();
-        totalFishTextField = new javax.swing.JTextField();
-        placesVisitedTextField = new javax.swing.JTextField();
+        homeButton = new javax.swing.JButton();
         speciesCaughtTextField = new javax.swing.JTextField();
-        baitUsedTextField = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        totalHoursTextField = new javax.swing.JTextField();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        sessionsTextArea = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        totalHoursLabel = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -61,14 +75,8 @@ public class ViewStatsScreen extends javax.swing.JFrame {
         totalFishLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
         totalFishLabel.setText("TOTAL FISH CAUGHT: ");
 
-        placesVisitedLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
-        placesVisitedLabel.setText("PLACES VISITED: ");
-
         speciesCaughtLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
         speciesCaughtLabel.setText("SPECIES CAUGHT: ");
-
-        baitUsedLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
-        baitUsedLabel.setText("BAIT/TRACE/LURES USED: ");
 
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
@@ -78,13 +86,29 @@ public class ViewStatsScreen extends javax.swing.JFrame {
         jTextArea4.setRows(5);
         jScrollPane4.setViewportView(jTextArea4);
 
-        totalFishTextField.setText(" ");
+        homeButton.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
+        homeButton.setText("HOME");
+        homeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButtonActionPerformed(evt);
+            }
+        });
 
-        placesVisitedTextField.setText(" ");
+        speciesCaughtTextField.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
 
-        speciesCaughtTextField.setText(" ");
+        jTextField2.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
 
-        baitUsedTextField.setText(" ");
+        totalHoursTextField.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
+
+        sessionsTextArea.setColumns(20);
+        sessionsTextArea.setRows(5);
+        jScrollPane6.setViewportView(sessionsTextArea);
+
+        jLabel1.setFont(new java.awt.Font("Yu Gothic Medium", 1, 12)); // NOI18N
+        jLabel1.setText("SESSIONS:");
+
+        totalHoursLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
+        totalHoursLabel.setText("TOTAL HOURS SPENT:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,57 +117,72 @@ public class ViewStatsScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(viewStatsLabel)
-                            .addGap(52, 52, 52))
-                        .addComponent(totalFishLabel)
-                        .addComponent(placesVisitedLabel)
-                        .addComponent(speciesCaughtLabel))
-                    .addComponent(baitUsedLabel))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(viewStatsLabel)
+                                .addGap(52, 52, 52))
+                            .addComponent(speciesCaughtLabel)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(totalHoursLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(totalFishLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(speciesCaughtTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(totalHoursTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(speciesCaughtTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
-                            .addComponent(baitUsedTextField)))
-                    .addComponent(totalFishTextField)
-                    .addComponent(placesVisitedTextField))
-                .addGap(0, 57, Short.MAX_VALUE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addComponent(homeButton)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(viewStatsLabel)
-                .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(totalFishLabel)
-                    .addComponent(totalFishTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(placesVisitedLabel)
-                    .addComponent(placesVisitedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(speciesCaughtLabel)
-                        .addComponent(speciesCaughtTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(baitUsedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(baitUsedLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(totalHoursTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(speciesCaughtLabel)
+                            .addComponent(speciesCaughtTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addComponent(homeButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(totalHoursLabel)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new  MainScreen().setVisible(true);
+    }//GEN-LAST:event_homeButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,22 +220,24 @@ public class ViewStatsScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel baitUsedLabel;
-    private javax.swing.JTextField baitUsedTextField;
+    private javax.swing.JButton homeButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JLabel placesVisitedLabel;
-    private javax.swing.JTextField placesVisitedTextField;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextArea sessionsTextArea;
     private javax.swing.JLabel speciesCaughtLabel;
     private javax.swing.JTextField speciesCaughtTextField;
     private javax.swing.JLabel totalFishLabel;
-    private javax.swing.JTextField totalFishTextField;
+    private javax.swing.JLabel totalHoursLabel;
+    private javax.swing.JTextField totalHoursTextField;
     private javax.swing.JLabel viewStatsLabel;
     // End of variables declaration//GEN-END:variables
 }

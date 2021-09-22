@@ -82,6 +82,7 @@ public class EditLocationScreen extends javax.swing.JFrame {
             }
         });
 
+        homeButton.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
         homeButton.setText("HOME");
         homeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,7 +127,7 @@ public class EditLocationScreen extends javax.swing.JFrame {
                             .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(homeButton)
                 .addContainerGap())
         );
@@ -171,7 +172,7 @@ public class EditLocationScreen extends javax.swing.JFrame {
 		LocationManager.deleteLocation(name);
 
 		//Use the backend to update the frontend
-		String allLocation = LocationManager.getLocation();
+		String allLocation = LocationManager.getLocations();
 		
                  DefaultListModel<String> listModel = new DefaultListModel<String>();
         String[] location = LocationManager.getLocationAsArray();

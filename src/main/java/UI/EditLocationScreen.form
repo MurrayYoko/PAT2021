@@ -67,7 +67,7 @@
                   </Group>
                   <Component id="jScrollPane1" min="-2" pref="144" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="16" max="32767" attributes="0"/>
+              <EmptySpace pref="12" max="32767" attributes="0"/>
               <Component id="homeButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -142,6 +142,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="homeButton">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Yu Gothic Medium" size="11" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="HOME"/>
       </Properties>
       <Events>

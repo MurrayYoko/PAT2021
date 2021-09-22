@@ -17,7 +17,7 @@ import java.util.Scanner;
  * @author Murrayy
  */
 public class BaitManager {
-    int i = 0;
+    
     private static String fileName = "data//bait.txt";
 
     public static String getAllBait() {

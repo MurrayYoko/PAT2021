@@ -22,7 +22,7 @@ public class LocationManager {
 	//READ COMMENTS IN ASSESSMENT - this class is almost a duplicate
 	private static String fileName = "data//location.txt";
 
-	public static String getLocation() {
+	public static String getLocations() {
 		try {
 			Scanner sc = new Scanner(new File(fileName));
 			String output = "";

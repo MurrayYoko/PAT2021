@@ -1,6 +1,1 @@
-Item 1# shad #Salt Rock#squid# 4# 6:00AM# 32#null
-Item 1# shad #Salt Rock#squid# 4# 6:00AM# 32#null
-Item 1# shad #Tiffanys#sardine#3#7:00AM#6# shad 
-Item 1# cichlocanth#Salt Rock#squid#3 Hours#06:00AM#15# cichlocanth#13/05/2021
- # Date: 24/06/2021 # User: Item 1 # Target Species: trout # Location: Tiffanys # Bait/Lures used: prawn  # Time Spent: 2 Hours # Time of arrival: 08:00AM # Amount of fish caught: 4 # Species caught:  shad 
- # Date: 10/05/2021 # User: Item 1 # Target Species:  Couta # Location: Salt Rock # Bait/Lures used: squid # Time Spent: 2 hours # Time of arrival: 06:00Am # Amount of fish caught: 4 # Species caught:  Couta
+Murray#30/09/2021#Tiffanys#Shad#sardine#Overcast#2#8:00AM#5#Shad

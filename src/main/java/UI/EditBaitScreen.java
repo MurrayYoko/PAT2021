@@ -102,6 +102,7 @@ public class EditBaitScreen extends javax.swing.JFrame {
             }
         });
 
+        homeButton.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
         homeButton.setText("HOME");
         homeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

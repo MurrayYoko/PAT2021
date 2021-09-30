@@ -28,7 +28,7 @@ public class LogSessionScreen extends javax.swing.JFrame {
 
         setLocationRelativeTo(null);
         
-        //location visited
+        //location visited during session
         DefaultComboBoxModel<String> model1 = new DefaultComboBoxModel<String>();
         String[] location = LocationManager.getLocationAsArray();
         for (int i = 0; i < location.length; i++) {
@@ -36,7 +36,7 @@ public class LogSessionScreen extends javax.swing.JFrame {
         }
         locationComboBox.setModel(model1);
         
-        //target species
+        //target species for session
         DefaultComboBoxModel<String> model2 = new DefaultComboBoxModel<String>();
         String[] species = SpeciesManager.getAllSpeciesAsArray();
         for (int i = 0; i < species.length; i++) {
@@ -44,7 +44,7 @@ public class LogSessionScreen extends javax.swing.JFrame {
         }
         targetSpeciesComboBox.setModel(model2);
         
-        //bait used
+        //bait used in session
         DefaultComboBoxModel<String> model3 = new DefaultComboBoxModel<String>();
         String[] bait = BaitManager.getAllBaitAsArray();
         for (int i = 0; i < bait.length; i++) {
@@ -52,7 +52,7 @@ public class LogSessionScreen extends javax.swing.JFrame {
         }
         baitComboBox.setModel(model3);
         
-        //species caught
+        //species caught in session
         DefaultListModel<String> model4 = new DefaultListModel<String>();
          String[] speciescaught = SpeciesManager.getAllSpeciesAsArray();
         for (int i = 0; i < species.length; i++) {
@@ -60,13 +60,14 @@ public class LogSessionScreen extends javax.swing.JFrame {
         }
         speciesList.setModel(model4);
         
-         DefaultComboBoxModel<String> model5 = new DefaultComboBoxModel<String>();
-         model5.addElement("Clear"); 
-         model5.addElement("Overcast"); 
-         model5.addElement("Raining"); 
-         model5.addElement("Stormy"); 
-         weatherComboBox.setModel(model5);
-        
+        //weather conditions
+        DefaultComboBoxModel<String> model5 = new DefaultComboBoxModel<String>();
+        model5.addElement("Sunny"); 
+        model5.addElement("Overcast"); 
+        model5.addElement("Raining"); 
+        model5.addElement("Stormy"); 
+        weatherComboBox.setModel(model5);
+         
     }
 
     /**
@@ -88,7 +89,6 @@ public class LogSessionScreen extends javax.swing.JFrame {
         baitComboBox = new javax.swing.JComboBox<>();
         speciesCaughtLabel = new javax.swing.JLabel();
         timeSpentLabel = new javax.swing.JLabel();
-        timeSpentTextField = new javax.swing.JTextField();
         fishAmountLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         speciesList = new javax.swing.JList<>();
@@ -103,7 +103,7 @@ public class LogSessionScreen extends javax.swing.JFrame {
         weatherComboBox = new javax.swing.JComboBox<>();
         dateLabel = new javax.swing.JLabel();
         dateTextField = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
+        timeSpentSpinner = new javax.swing.JSpinner();
 
         jTextField2.setText("jTextField2");
 
@@ -141,13 +141,6 @@ public class LogSessionScreen extends javax.swing.JFrame {
 
         timeSpentLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
         timeSpentLabel.setText("TIME SPENT (HOURS): ");
-
-        timeSpentTextField.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
-        timeSpentTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                timeSpentTextFieldActionPerformed(evt);
-            }
-        });
 
         fishAmountLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
         fishAmountLabel.setText("AMOUNT OF FISH CAUGHT: ");
@@ -192,18 +185,18 @@ public class LogSessionScreen extends javax.swing.JFrame {
         });
 
         userNameComboBox.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
-        userNameComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        userNameComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Murray" }));
 
         weatherLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
         weatherLabel.setText("WEATHER CONDITIONS:");
 
         weatherComboBox.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
-        weatherComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        weatherComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sunny", "Overcast", "Rainy", "Stormy" }));
 
         dateLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
         dateLabel.setText("DATE:");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        timeSpentSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -236,9 +229,8 @@ public class LogSessionScreen extends javax.swing.JFrame {
                                             .addComponent(dateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addComponent(speciesCaughtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(baitComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(targetSpeciesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(baitComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(targetSpeciesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -253,12 +245,8 @@ public class LogSessionScreen extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(arrivalTimeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
                                         .addComponent(fishCaughtTextField))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(weatherComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(timeSpentTextField, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(weatherComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(timeSpentSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cancelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -301,17 +289,16 @@ public class LogSessionScreen extends javax.swing.JFrame {
                             .addComponent(weatherLabel)
                             .addComponent(weatherComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(saveSessionButton)
                         .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(timeSpentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(timeSpentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(timeSpentSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(arrivalTimeLabel)
                             .addComponent(arrivalTimeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -330,26 +317,22 @@ public class LogSessionScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_locationComboBoxActionPerformed
 
-    private void timeSpentTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeSpentTextFieldActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_timeSpentTextFieldActionPerformed
-
     private void saveSessionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveSessionButtonActionPerformed
         // TODO add your handling code here:
         
         
         String userName = (String)userNameComboBox.getSelectedItem();
-        String targetSpecies = (String)targetSpeciesComboBox.getSelectedItem();
+        String date = dateTextField.getText();
         String location = (String)locationComboBox.getSelectedItem();
+        String targetSpecies = (String)targetSpeciesComboBox.getSelectedItem();
         String baitUsed = (String)baitComboBox.getSelectedItem();
-        String speciesCaught = (String)speciesList.getSelectedValue();
-        String timeSpent = timeSpentTextField.getText();
+        String weather = (String)weatherComboBox.getSelectedItem();
+        String timeSpent = ""+timeSpentSpinner.getValue();
         String timeOfArrival = arrivalTimeTextField.getText();
         String amountFish = fishCaughtTextField.getText();
-        String date = dateTextField.getText();
+        String speciesCaught = (String)speciesList.getSelectedValue();
         
-        LogSessionManager.logSession(date,userName,targetSpecies,location,baitUsed,timeSpent,timeOfArrival,amountFish,speciesCaught);
+        LogSessionManager.logSession(userName, date, location, targetSpecies, baitUsed, weather, timeSpent, timeOfArrival, amountFish, speciesCaught);
         JOptionPane.showMessageDialog(this, "Session saved successfully!");
     }//GEN-LAST:event_saveSessionButtonActionPerformed
 
@@ -409,7 +392,6 @@ public class LogSessionScreen extends javax.swing.JFrame {
     private javax.swing.JLabel fishAmountLabel;
     private javax.swing.JTextField fishCaughtTextField;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JComboBox<String> locationComboBox;
     private javax.swing.JLabel locationLabel;
@@ -420,7 +402,7 @@ public class LogSessionScreen extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> targetSpeciesComboBox;
     private javax.swing.JLabel targetSpeciesLabel;
     private javax.swing.JLabel timeSpentLabel;
-    private javax.swing.JTextField timeSpentTextField;
+    private javax.swing.JSpinner timeSpentSpinner;
     private javax.swing.JLabel userLabel;
     private javax.swing.JComboBox<String> userNameComboBox;
     private javax.swing.JComboBox<String> weatherComboBox;

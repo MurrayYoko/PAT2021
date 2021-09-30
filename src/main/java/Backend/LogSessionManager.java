@@ -20,10 +20,10 @@ public class LogSessionManager {
 
     private static String fileName = "data//Session.txt";
 
-    public static void logSession(String date, String userName, String targetSpecies, String location, String baitUsed, String timeSpent, String timeOfArrival, String amountFish, String speciesCaught) {
+    public static void logSession(String userName, String date, String location, String targetSpecies, String baitUsed, String weather, String timeSpent, String timeOfArrival, String amountFish, String speciesCaught) {
         try {
             PrintWriter pw = new PrintWriter(new FileWriter(fileName, true));
-            pw.println(date + "#" + userName + "#" + targetSpecies + "#" + location + "#" + baitUsed + "#" + timeSpent + "#" + timeOfArrival + "#" + amountFish + "#" + speciesCaught);
+            pw.println(userName + "#" + date + "#" + location + "#" + targetSpecies + "#" + baitUsed + "#" + weather + "#" + timeSpent + "#" + timeOfArrival + "#" + amountFish + "#" + speciesCaught);
             pw.close();
         } catch (IOException ex) {
             System.out.println("Could not write to file");
@@ -48,13 +48,15 @@ public class LogSessionManager {
                  * This returns the first token (we ignore the next token (which
                  * is the "type" of assessment.
                  */
-                String  date = linesc.next();
-                String  userName = linesc.next();
-                String  targetSpecies = linesc.next();
-                String  location = linesc.next();
-                String  baitUsed = linesc.next();
-                String  timeSpent = linesc.next();
-                String  amountFish = linesc.next();
+                String userName = linesc.next();
+                String date = linesc.next();
+                String location = linesc.next();
+                String targetSpecies = linesc.next();
+                String baitUsed = linesc.next();
+                String weather = linesc.next();
+                String timeSpent = linesc.next();
+                String timeOfArrival = linesc.next();
+                String amountFish = linesc.next();
                 String speciesCaught = linesc.next();
 
                 output += "Date: " + date + " Location: " + location + " Bait used: " + baitUsed + " Amount of fish caught: " + amountFish + "\n";
@@ -69,7 +71,7 @@ public class LogSessionManager {
             return null;
         }
     }
-    public static String getAllFish() {
+    public static int getNumFish() {
         //read these in the same order as they were saved
         try {
             Scanner sc = new Scanner(new File(fileName));
@@ -87,17 +89,19 @@ public class LogSessionManager {
                  * This returns the first token (we ignore the next token (which
                  * is the "type" of assessment.
                  */
-                String  date = linesc.next();
-                String  userName = linesc.next();
-                String  targetSpecies = linesc.next();
-                String  location = linesc.next();
-                String  baitUsed = linesc.next();
-                String  timeSpent = linesc.next();
-                String  amountFish = linesc.next();
+                String userName = linesc.next();
+                String date = linesc.next();
+                String location = linesc.next();
+                String targetSpecies = linesc.next();
+                String baitUsed = linesc.next();
+                String weather = linesc.next();
+                String timeSpent = linesc.next();
+                String timeOfArrival = linesc.next();
+                String amountFish = linesc.next();
                 String speciesCaught = linesc.next();
 
                 numFish += Integer.parseInt(amountFish);
-                linesc.close();
+                linesc.close(); 
 
             }
             sc.close();
@@ -105,10 +109,10 @@ public class LogSessionManager {
         } catch (FileNotFoundException ex) {
             System.out.println("File not found.");
         }
-        return -1;
+        return 0;
     }
     
-    public static int getAllHours() {
+    public static int getNumHours() {
         //read these in the same order as they were saved
         try {
             Scanner sc = new Scanner(new File(fileName));
@@ -126,13 +130,15 @@ public class LogSessionManager {
                  * This returns the first token (we ignore the next token (which
                  * is the "type" of assessment.
                  */
-                String  date = linesc.next();
-                String  userName = linesc.next();
-                String  targetSpecies = linesc.next();
-                String  location = linesc.next();
-                String  baitUsed = linesc.next();
-                String  timeSpent = linesc.next();
-                String  amountFish = linesc.next();
+                String userName = linesc.next();
+                String date = linesc.next();
+                String location = linesc.next();
+                String targetSpecies = linesc.next();
+                String baitUsed = linesc.next();
+                String weather = linesc.next();
+                String timeSpent = linesc.next();
+                String timeOfArrival = linesc.next();
+                String amountFish = linesc.next();
                 String speciesCaught = linesc.next();
 
                 numHours += Integer.parseInt(timeSpent);
@@ -144,17 +150,17 @@ public class LogSessionManager {
         } catch (FileNotFoundException ex) {
             System.out.println("File not found.");
         }
-        return -1;
+        return 0;
     }
     
     public static int getNumSessions() {
         //read these in the same order as they were saved
         try {
             Scanner sc = new Scanner(new File(fileName));
-            int output = 0;
+            int numsessions = 0;
 
             while (sc.hasNextLine()) {
-                output = output + 1; 
+                
                 //get line into string
                 //new scanner on line (use # delimeter)
                 //get each data point
@@ -165,24 +171,26 @@ public class LogSessionManager {
                  * This returns the first token (we ignore the next token (which
                  * is the "type" of assessment.
                  */
-                String  date = linesc.next();
-                String  userName = linesc.next();
-                String  targetSpecies = linesc.next();
-                String  location = linesc.next();
-                String  baitUsed = linesc.next();
-                String  timeSpent = linesc.next();
-                String  amountFish = linesc.next();
+                String userName = linesc.next();
+                String date = linesc.next();
+                String location = linesc.next();
+                String targetSpecies = linesc.next();
+                String baitUsed = linesc.next();
+                String weather = linesc.next();
+                String timeSpent = linesc.next();
+                String timeOfArrival = linesc.next();
+                String amountFish = linesc.next();
                 String speciesCaught = linesc.next();
 
-                
+                numsessions += 1;
                 linesc.close();
                 
             }
             sc.close();
-            return output;
+            return numsessions;
         } catch (FileNotFoundException ex) {
-            System.out.println("ile not found.");
-            return -1;
+            System.out.println("File not found.");
+            return 0;
         }
     }
 }

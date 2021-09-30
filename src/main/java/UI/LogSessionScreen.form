@@ -63,10 +63,8 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="speciesCaughtLabel" min="-2" pref="127" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="baitComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="targetSpeciesComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="baitComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="targetSpeciesComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -87,14 +85,8 @@
                                       <Component id="arrivalTimeTextField" pref="70" max="32767" attributes="0"/>
                                       <Component id="fishCaughtTextField" max="32767" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="weatherComboBox" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="timeSpentTextField" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jSpinner1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="weatherComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="timeSpentSpinner" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -156,19 +148,18 @@
                   </Group>
                   <Component id="jScrollPane2" alignment="1" min="-2" pref="123" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" pref="17" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="saveSessionButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="timeSpentTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="timeSpentLabel" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                          <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="timeSpentLabel" min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="timeSpentSpinner" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="arrivalTimeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="arrivalTimeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -293,16 +284,6 @@
         <Property name="text" type="java.lang.String" value="TIME SPENT (HOURS): "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="timeSpentTextField">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Yu Gothic Medium" size="11" style="1"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="timeSpentTextFieldActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="fishAmountLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -400,11 +381,8 @@
           <Font name="Yu Gothic Medium" size="11" style="1"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="1">
+            <StringItem index="0" value="Murray"/>
           </StringArray>
         </Property>
       </Properties>
@@ -427,10 +405,10 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+            <StringItem index="0" value="Sunny"/>
+            <StringItem index="1" value="Overcast"/>
+            <StringItem index="2" value="Rainy"/>
+            <StringItem index="3" value="Stormy"/>
           </StringArray>
         </Property>
       </Properties>
@@ -448,7 +426,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="dateTextField">
     </Component>
-    <Component class="javax.swing.JSpinner" name="jSpinner1">
+    <Component class="javax.swing.JSpinner" name="timeSpentSpinner">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
           <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>

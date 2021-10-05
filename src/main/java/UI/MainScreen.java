@@ -35,7 +35,6 @@ public class MainScreen extends javax.swing.JFrame {
         editBaitButton = new javax.swing.JButton();
         latchedOntoLeviathansLabel = new javax.swing.JLabel();
         programmerLabel = new javax.swing.JLabel();
-        fishLabel = new javax.swing.JLabel();
         waterImageLabel = new javax.swing.JLabel();
         waterImageLabel2 = new javax.swing.JLabel();
 
@@ -89,8 +88,6 @@ public class MainScreen extends javax.swing.JFrame {
         programmerLabel.setFont(new java.awt.Font("Sylfaen", 2, 14)); // NOI18N
         programmerLabel.setText("by Murray Yoko");
 
-        fishLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/fish.png"))); // NOI18N
-
         waterImageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sea-water.png"))); // NOI18N
 
         waterImageLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sea-water.png"))); // NOI18N
@@ -104,7 +101,7 @@ public class MainScreen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(editBaitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(editBaitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                             .addComponent(editSpeciesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(editLocationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,21 +120,16 @@ public class MainScreen extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(programmerLabel)
                             .addComponent(latchedOntoLeviathansLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(fishLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 23, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(latchedOntoLeviathansLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(programmerLabel))
-                    .addComponent(fishLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(latchedOntoLeviathansLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(programmerLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editLocationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(logSessionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -235,7 +227,6 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JButton editBaitButton;
     private javax.swing.JButton editLocationButton;
     private javax.swing.JButton editSpeciesButton;
-    private javax.swing.JLabel fishLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel latchedOntoLeviathansLabel;
     private javax.swing.JButton logSessionButton;

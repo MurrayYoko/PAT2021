@@ -95,7 +95,7 @@ public class LogSessionScreen extends javax.swing.JFrame {
         arrivalTimeTextField = new javax.swing.JTextField();
         arrivalTimeLabel = new javax.swing.JLabel();
         fishCaughtTextField = new javax.swing.JTextField();
-        cancelButton = new javax.swing.JButton();
+        homeButton = new javax.swing.JButton();
         userLabel = new javax.swing.JLabel();
         saveSessionButton = new javax.swing.JButton();
         userNameComboBox = new javax.swing.JComboBox<>();
@@ -165,11 +165,11 @@ public class LogSessionScreen extends javax.swing.JFrame {
 
         fishCaughtTextField.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
 
-        cancelButton.setFont(new java.awt.Font("Yu Gothic Medium", 1, 11)); // NOI18N
-        cancelButton.setText("CANCEL");
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+        homeButton.setFont(new java.awt.Font("Yu Gothic Medium", 1, 12)); // NOI18N
+        homeButton.setText("HOME");
+        homeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
+                homeButtonActionPerformed(evt);
             }
         });
 
@@ -249,7 +249,7 @@ public class LogSessionScreen extends javax.swing.JFrame {
                                     .addComponent(timeSpentSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cancelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(homeButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(saveSessionButton, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -289,7 +289,7 @@ public class LogSessionScreen extends javax.swing.JFrame {
                             .addComponent(weatherLabel)
                             .addComponent(weatherComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(saveSessionButton)
@@ -304,7 +304,7 @@ public class LogSessionScreen extends javax.swing.JFrame {
                             .addComponent(arrivalTimeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(7, 7, 7)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelButton)
+                    .addComponent(homeButton)
                     .addComponent(fishCaughtTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fishAmountLabel))
                 .addGap(18, 18, 18))
@@ -336,11 +336,11 @@ public class LogSessionScreen extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Session saved successfully!");
     }//GEN-LAST:event_saveSessionButtonActionPerformed
 
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         // TODO add your handling code here:
         dispose();
         new  MainScreen().setVisible(true);
-    }//GEN-LAST:event_cancelButtonActionPerformed
+    }//GEN-LAST:event_homeButtonActionPerformed
 
     private void arrivalTimeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrivalTimeTextFieldActionPerformed
         // TODO add your handling code here:
@@ -386,11 +386,11 @@ public class LogSessionScreen extends javax.swing.JFrame {
     private javax.swing.JTextField arrivalTimeTextField;
     private javax.swing.JComboBox<String> baitComboBox;
     private javax.swing.JLabel baitLabel;
-    private javax.swing.JButton cancelButton;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JTextField dateTextField;
     private javax.swing.JLabel fishAmountLabel;
     private javax.swing.JTextField fishCaughtTextField;
+    private javax.swing.JButton homeButton;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JComboBox<String> locationComboBox;

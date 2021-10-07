@@ -152,40 +152,40 @@ public class MainScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
 
-		//create a new main menu screen.
-		new EditSpeciesScreen().setVisible(true);
+        //create a new main menu screen.
+        new EditSpeciesScreen().setVisible(true);
     }//GEN-LAST:event_editSpeciesButtonActionPerformed
 
     private void editLocationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editLocationButtonActionPerformed
         // TODO add your handling code here:
         dispose();
 
-		//create a new main menu screen.
-		new EditLocationScreen().setVisible(true);
+        //create a new main menu screen.
+        new EditLocationScreen().setVisible(true);
     }//GEN-LAST:event_editLocationButtonActionPerformed
 
     private void viewStatsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStatsButtonActionPerformed
         // TODO add your handling code here:
         dispose();
 
-		//create a new main menu screen.
-		new ViewStatsScreen().setVisible(true);
+        //create a new main menu screen.
+        new ViewStatsScreen().setVisible(true);
     }//GEN-LAST:event_viewStatsButtonActionPerformed
 
     private void logSessionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logSessionButtonActionPerformed
         // TODO add your handling code here:
         dispose();
 
-		//create a new main menu screen.
-		new LogSessionScreen().setVisible(true);
+        //create a new main menu screen.
+        new LogSessionScreen().setVisible(true);
     }//GEN-LAST:event_logSessionButtonActionPerformed
 
     private void editBaitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBaitButtonActionPerformed
         // TODO add your handling code here:
         dispose();
 
-		//create a new main menu screen.
-		new EditBaitScreen().setVisible(true);
+        //create a new main menu screen.
+        new EditBaitScreen().setVisible(true);
     }//GEN-LAST:event_editBaitButtonActionPerformed
 
     /**

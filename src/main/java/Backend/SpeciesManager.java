@@ -17,9 +17,10 @@ import java.util.Scanner;
  * @author Murrayy
  */
 public class SpeciesManager {
-    
+
     private static String fileName = "data//species.txt";
 
+    //Gets all species in a multilined string.
     public static String getAllSpecies() {
         try {
             Scanner sc = new Scanner(new File(fileName));
@@ -36,6 +37,7 @@ public class SpeciesManager {
         }
     }
 
+    //Gets all species in an array of strings.
     public static String[] getAllSpeciesAsArray() {
         try {
             Scanner sc = new Scanner(new File(fileName));
@@ -54,6 +56,7 @@ public class SpeciesManager {
         }
     }
 
+    //Gets the total number of species.
     private static int getNumSpecies() {
         try {
             Scanner sc = new Scanner(new File(fileName));
@@ -70,6 +73,7 @@ public class SpeciesManager {
         }
     }
 
+    //Saves a species to species.txt
     public static void addSpecies(String Species) {
         try {
             PrintWriter pw = new PrintWriter(new FileWriter(fileName, true));
@@ -80,28 +84,29 @@ public class SpeciesManager {
         }
 
     }
+
+    //Removes a species from species.txt
     public static void deleteSpecies(String species) {
-		try {
-			Scanner sc = new Scanner(new File(fileName));
-			String output = "";
-			String fullname = species; 
+        try {
+            Scanner sc = new Scanner(new File(fileName));
+            String output = "";
+            String fullname = species;
 
-			while (sc.hasNextLine()) {
-				String line = sc.nextLine();
-				if (!line.equalsIgnoreCase(fullname)) {
-					output += line + "\n";
-				}
-			}
-			sc.close();
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                if (!line.equalsIgnoreCase(fullname)) {
+                    output += line + "\n";
+                }
+            }
+            sc.close();
 
-			PrintWriter pw = new PrintWriter(new FileWriter(fileName, false));
-			pw.print(output);
-			pw.close();
-		} catch (FileNotFoundException ex) {
-			System.out.println("Species file not found");
-		} catch (IOException ex) {
-			System.out.println("Could not delete Species");
-		}
-	}
+            PrintWriter pw = new PrintWriter(new FileWriter(fileName, false));
+            pw.print(output);
+            pw.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println("Species file not found");
+        } catch (IOException ex) {
+            System.out.println("Could not delete Species");
+        }
+    }
 }
-

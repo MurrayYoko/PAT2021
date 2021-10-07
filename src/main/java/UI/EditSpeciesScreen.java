@@ -5,7 +5,6 @@
  */
 package UI;
 
-
 import Backend.SpeciesManager;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -20,7 +19,8 @@ public class EditSpeciesScreen extends javax.swing.JFrame {
      * Creates new form EditSpeciesScreen
      */
     public EditSpeciesScreen() {
-        initComponents(); 
+        initComponents();
+        //populates list with species
         DefaultListModel<String> listModel = new DefaultListModel<String>();
         String[] species = SpeciesManager.getAllSpeciesAsArray();
         for (int i = 0; i < species.length; i++) {
@@ -28,7 +28,6 @@ public class EditSpeciesScreen extends javax.swing.JFrame {
         }
         editSpeciesList.setModel(listModel);
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -98,43 +97,41 @@ public class EditSpeciesScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(editSpeciesTextField)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                        .addComponent(twoFishImageLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(homeButton)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(twoFishImageLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(editSpeciesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 27, Short.MAX_VALUE))
+                            .addComponent(editSpeciesTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(homeButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(editSpeciesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(editSpeciesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(twoFishImageLabel)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(editSpeciesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(editSpeciesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(twoFishImageLabel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(homeButton)
@@ -146,21 +143,18 @@ public class EditSpeciesScreen extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-         String newSpecies = editSpeciesTextField.getText();
+        String newSpecies = editSpeciesTextField.getText();
 
         SpeciesManager.addSpecies(newSpecies);
-        
-        
+
         DefaultListModel<String> listModel = new DefaultListModel<String>();
-        
+
         String[] species = SpeciesManager.getAllSpeciesAsArray();
         for (int i = 0; i < species.length; i++) {
             listModel.addElement(species[i]);
         }
         editSpeciesList.setModel(listModel);
-        
-        
-        
+
         JOptionPane.showMessageDialog(this, "Species added successfully!");
 
         editSpeciesTextField.setText("");
@@ -169,28 +163,27 @@ public class EditSpeciesScreen extends javax.swing.JFrame {
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here: 
         String name = editSpeciesList.getSelectedValue();
-		
 
-		//Use the backend to manipulate the textfile data
-		SpeciesManager.deleteSpecies(name);
+        //Use the backend to manipulate the textfile data
+        SpeciesManager.deleteSpecies(name);
 
-		//Use the backend to update the frontend
-		String allSpecies = SpeciesManager.getAllSpecies();
-		
-                 DefaultListModel<String> listModel = new DefaultListModel<String>();
+        //Use the backend to update the frontend
+        String allSpecies = SpeciesManager.getAllSpecies();
+
+        DefaultListModel<String> listModel = new DefaultListModel<String>();
         String[] species = SpeciesManager.getAllSpeciesAsArray();
         for (int i = 0; i < species.length; i++) {
             listModel.addElement(species[i]);
         }
-        editSpeciesList.setModel(listModel);        
+        editSpeciesList.setModel(listModel);
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         // TODO add your handling code here:
-         dispose();
+        dispose();
 
-		//create a new main menu screen.
-		new MainScreen().setVisible(true);
+        //create a new main menu screen.
+        new MainScreen().setVisible(true);
     }//GEN-LAST:event_homeButtonActionPerformed
 
     /**

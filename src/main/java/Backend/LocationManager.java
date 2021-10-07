@@ -21,7 +21,8 @@ public class LocationManager {
 
 	//READ COMMENTS IN ASSESSMENT - this class is almost a duplicate
 	private static String fileName = "data//location.txt";
-
+        
+        //Gets all locations in a multilined string 
 	public static String getLocations() {
 		try {
 			Scanner sc = new Scanner(new File(fileName));
@@ -37,7 +38,7 @@ public class LocationManager {
 			return null;
 		}
 	}
-
+        //Gets all locations in an array of strings
 	public static String[] getLocationAsArray() {
 		try {
 			Scanner sc = new Scanner(new File(fileName));
@@ -55,7 +56,7 @@ public class LocationManager {
 			return null;
 		}
 	}
-
+        //Gets number of locations 
 	private static int getNumLocations() {
 		try {
 			Scanner sc = new Scanner(new File(fileName));
@@ -71,7 +72,7 @@ public class LocationManager {
 			return -1;
 		}
 	}
-
+        //Saves a location to location.txt
 	public static void addLocation(String location) {
 		try {
 			PrintWriter pw = new PrintWriter(new FileWriter(fileName, true));
@@ -81,7 +82,7 @@ public class LocationManager {
 			System.out.println("Could not write to file");
 		}
 	}
-
+        //Removes a location from location.txt
 	public static void deleteLocation(String location) {
 		try {
 			Scanner sc = new Scanner(new File(fileName));

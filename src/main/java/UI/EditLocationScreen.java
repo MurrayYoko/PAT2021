@@ -20,6 +20,7 @@ public class EditLocationScreen extends javax.swing.JFrame {
      */
     public EditLocationScreen() {
         initComponents();
+        //populates list with locations
         DefaultListModel<String> listModel = new DefaultListModel<String>();
         String[] location = LocationManager.getLocationAsArray();
         for (int i = 0; i < location.length; i++) {
@@ -104,29 +105,32 @@ public class EditLocationScreen extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                                 .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(editLocationTextField, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(homeButton)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(editLocationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(locationImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(homeButton))
-                        .addGap(0, 57, Short.MAX_VALUE)))
+                                .addComponent(locationImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(editLocationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(editLocationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(locationImageLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(locationImageLabel))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(editLocationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,26 +151,23 @@ public class EditLocationScreen extends javax.swing.JFrame {
 
     private void editLocationTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editLocationTextFieldActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_editLocationTextFieldActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-         String newlocation = editLocationTextField.getText();
+        String newlocation = editLocationTextField.getText();
 
         LocationManager.addLocation(newlocation);
-        
-        
+
         DefaultListModel<String> listModel = new DefaultListModel<String>();
-        
+
         String[] location = LocationManager.getLocationAsArray();
         for (int i = 0; i < location.length; i++) {
             listModel.addElement(location[i]);
         }
         locationList.setModel(listModel);
-        
-        
-        
+
         JOptionPane.showMessageDialog(this, "Location added successfully!");
 
         editLocationTextField.setText("");
@@ -175,30 +176,28 @@ public class EditLocationScreen extends javax.swing.JFrame {
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
         String name = locationList.getSelectedValue();
-		
 
-		//Use the backend to manipulate the textfile data
-               
-		LocationManager.deleteLocation(name);
+        //Use the backend to manipulate the textfile data
+        LocationManager.deleteLocation(name);
 
-		//Use the backend to update the frontend
-		String allLocation = LocationManager.getLocations();
-		
-                 DefaultListModel<String> listModel = new DefaultListModel<String>();
+        //Use the backend to update the frontend
+        String allLocation = LocationManager.getLocations();
+
+        DefaultListModel<String> listModel = new DefaultListModel<String>();
         String[] location = LocationManager.getLocationAsArray();
         for (int i = 0; i < location.length; i++) {
             listModel.addElement(location[i]);
         }
-        locationList.setModel(listModel);      
+        locationList.setModel(listModel);
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         // TODO add your handling code here:
         dispose();
 
-		//create a new main menu screen.
-		new MainScreen().setVisible(true);
-        
+        //create a new main menu screen.
+        new MainScreen().setVisible(true);
+
     }//GEN-LAST:event_homeButtonActionPerformed
 
     /**

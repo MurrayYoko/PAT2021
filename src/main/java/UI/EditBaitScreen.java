@@ -21,7 +21,7 @@ public class EditBaitScreen extends javax.swing.JFrame {
      */
     public EditBaitScreen() {
         initComponents();
-
+        //populates list
         DefaultListModel<String> listModel = new DefaultListModel<String>();
         String[] bait = BaitManager.getAllBaitAsArray();
         for (int i = 0; i < bait.length; i++) {
@@ -119,50 +119,45 @@ public class EditBaitScreen extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(homeButton, javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(115, 115, 115)
+                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(homeButton)
+                            .addComponent(editBaitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(lureImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11))
-                    .addComponent(editBaitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editBaitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(editBaitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(editBaitLabel)
-                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(editBaitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                                .addComponent(deleteButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                                        .addComponent(addButton)
-                                        .addGap(55, 55, 55))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(34, 34, 34)
-                                        .addComponent(lureImageLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addComponent(homeButton))))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(editBaitLabel)
+                        .addGap(29, 29, 29)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 41, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lureImageLabel)
+                        .addGap(7, 7, 7)
+                        .addComponent(editBaitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(deleteButton)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(addButton)
+                                .addGap(55, 55, 55)
+                                .addComponent(homeButton)))))
                 .addContainerGap())
         );
 
@@ -174,18 +169,15 @@ public class EditBaitScreen extends javax.swing.JFrame {
         String newbait = editBaitTextField.getText();
 
         BaitManager.addBait(newbait);
-        
-        
+
         DefaultListModel<String> listModel = new DefaultListModel<String>();
-        
+
         String[] bait = BaitManager.getAllBaitAsArray();
         for (int i = 0; i < bait.length; i++) {
             listModel.addElement(bait[i]);
         }
         baitList.setModel(listModel);
-        
-        
-        
+
         JOptionPane.showMessageDialog(this, "Bait added successfully!");
 
         editBaitTextField.setText("");
@@ -194,20 +186,19 @@ public class EditBaitScreen extends javax.swing.JFrame {
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
         String name = baitList.getSelectedValue();
-		
 
-		//Use the backend to manipulate the textfile data
-		BaitManager.deleteBait(name);
+        //Use the backend to manipulate the textfile data
+        BaitManager.deleteBait(name);
 
-		//Use the backend to update the frontend
-		String allBait = BaitManager.getAllBait();
-		
-                 DefaultListModel<String> listModel = new DefaultListModel<String>();
+        //Use the backend to update the frontend
+        String allBait = BaitManager.getAllBait();
+
+        DefaultListModel<String> listModel = new DefaultListModel<String>();
         String[] bait = BaitManager.getAllBaitAsArray();
         for (int i = 0; i < bait.length; i++) {
             listModel.addElement(bait[i]);
         }
-        baitList.setModel(listModel);                                    
+        baitList.setModel(listModel);
 
     }//GEN-LAST:event_deleteButtonActionPerformed
 
@@ -220,9 +211,9 @@ public class EditBaitScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
 
-		//create a new main menu screen.
-		new MainScreen().setVisible(true);
-        
+        //create a new main menu screen.
+        new MainScreen().setVisible(true);
+
     }//GEN-LAST:event_homeButtonActionPerformed
 
     /**

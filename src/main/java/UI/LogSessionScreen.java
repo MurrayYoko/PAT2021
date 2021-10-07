@@ -27,7 +27,7 @@ public class LogSessionScreen extends javax.swing.JFrame {
         initComponents();
 
         setLocationRelativeTo(null);
-        
+
         //location visited during session
         DefaultComboBoxModel<String> model1 = new DefaultComboBoxModel<String>();
         String[] location = LocationManager.getLocationAsArray();
@@ -35,7 +35,7 @@ public class LogSessionScreen extends javax.swing.JFrame {
             model1.addElement(location[i]);
         }
         locationComboBox.setModel(model1);
-        
+
         //target species for session
         DefaultComboBoxModel<String> model2 = new DefaultComboBoxModel<String>();
         String[] species = SpeciesManager.getAllSpeciesAsArray();
@@ -43,7 +43,7 @@ public class LogSessionScreen extends javax.swing.JFrame {
             model2.addElement(species[i]);
         }
         targetSpeciesComboBox.setModel(model2);
-        
+
         //bait used in session
         DefaultComboBoxModel<String> model3 = new DefaultComboBoxModel<String>();
         String[] bait = BaitManager.getAllBaitAsArray();
@@ -51,23 +51,23 @@ public class LogSessionScreen extends javax.swing.JFrame {
             model3.addElement(bait[i]);
         }
         baitComboBox.setModel(model3);
-        
+
         //species caught in session
         DefaultListModel<String> model4 = new DefaultListModel<String>();
-         String[] speciescaught = SpeciesManager.getAllSpeciesAsArray();
+        String[] speciescaught = SpeciesManager.getAllSpeciesAsArray();
         for (int i = 0; i < species.length; i++) {
             model4.addElement(species[i]);
         }
         speciesList.setModel(model4);
-        
+
         //weather conditions
         DefaultComboBoxModel<String> model5 = new DefaultComboBoxModel<String>();
-        model5.addElement("Sunny"); 
-        model5.addElement("Overcast"); 
-        model5.addElement("Raining"); 
-        model5.addElement("Stormy"); 
+        model5.addElement("Sunny");
+        model5.addElement("Overcast");
+        model5.addElement("Raining");
+        model5.addElement("Stormy");
         weatherComboBox.setModel(model5);
-         
+
     }
 
     /**
@@ -319,19 +319,18 @@ public class LogSessionScreen extends javax.swing.JFrame {
 
     private void saveSessionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveSessionButtonActionPerformed
         // TODO add your handling code here:
-        
-        
-        String userName = (String)userNameComboBox.getSelectedItem();
+
+        String userName = (String) userNameComboBox.getSelectedItem();
         String date = dateTextField.getText();
-        String location = (String)locationComboBox.getSelectedItem();
-        String targetSpecies = (String)targetSpeciesComboBox.getSelectedItem();
-        String baitUsed = (String)baitComboBox.getSelectedItem();
-        String weather = (String)weatherComboBox.getSelectedItem();
-        String timeSpent = ""+timeSpentSpinner.getValue();
+        String location = (String) locationComboBox.getSelectedItem();
+        String targetSpecies = (String) targetSpeciesComboBox.getSelectedItem();
+        String baitUsed = (String) baitComboBox.getSelectedItem();
+        String weather = (String) weatherComboBox.getSelectedItem();
+        String timeSpent = "" + timeSpentSpinner.getValue();
         String timeOfArrival = arrivalTimeTextField.getText();
         String amountFish = fishCaughtTextField.getText();
-        String speciesCaught = (String)speciesList.getSelectedValue();
-        
+        String speciesCaught = (String) speciesList.getSelectedValue();
+
         LogSessionManager.logSession(userName, date, location, targetSpecies, baitUsed, weather, timeSpent, timeOfArrival, amountFish, speciesCaught);
         JOptionPane.showMessageDialog(this, "Session saved successfully!");
     }//GEN-LAST:event_saveSessionButtonActionPerformed
@@ -339,7 +338,7 @@ public class LogSessionScreen extends javax.swing.JFrame {
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         // TODO add your handling code here:
         dispose();
-        new  MainScreen().setVisible(true);
+        new MainScreen().setVisible(true);
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void arrivalTimeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrivalTimeTextFieldActionPerformed
@@ -378,7 +377,7 @@ public class LogSessionScreen extends javax.swing.JFrame {
             public void run() {
                 new LogSessionScreen().setVisible(true);
             }
-            });
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

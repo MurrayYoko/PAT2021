@@ -17,9 +17,10 @@ import java.util.Scanner;
  * @author Murrayy
  */
 public class BaitManager {
-    
+
     private static String fileName = "data//bait.txt";
 
+    //Gets all baits in a multilined string
     public static String getAllBait() {
         try {
             Scanner sc = new Scanner(new File(fileName));
@@ -36,6 +37,7 @@ public class BaitManager {
         }
     }
 
+    //Gets all bait in an array of strings
     public static String[] getAllBaitAsArray() {
         try {
             Scanner sc = new Scanner(new File(fileName));
@@ -54,6 +56,7 @@ public class BaitManager {
         }
     }
 
+    //Recieves number of baits 
     private static int getNumBait() {
         try {
             Scanner sc = new Scanner(new File(fileName));
@@ -70,6 +73,7 @@ public class BaitManager {
         }
     }
 
+    //Saves a bait to bait.txt
     public static void addBait(String Bait) {
         try {
             PrintWriter pw = new PrintWriter(new FileWriter(fileName, true));
@@ -80,27 +84,29 @@ public class BaitManager {
         }
 
     }
+
+    //Removes a bait from bait.txt
     public static void deleteBait(String bait) {
-		try {
-			Scanner sc = new Scanner(new File(fileName));
-			String output = "";
-			String fullname = bait; 
+        try {
+            Scanner sc = new Scanner(new File(fileName));
+            String output = "";
+            String fullname = bait;
 
-			while (sc.hasNextLine()) {
-				String line = sc.nextLine();
-				if (!line.equalsIgnoreCase(fullname)) {
-					output += line + "\n";
-				}
-			}
-			sc.close();
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                if (!line.equalsIgnoreCase(fullname)) {
+                    output += line + "\n";
+                }
+            }
+            sc.close();
 
-			PrintWriter pw = new PrintWriter(new FileWriter(fileName, false));
-			pw.print(output);
-			pw.close();
-		} catch (FileNotFoundException ex) {
-			System.out.println("Bait file not found");
-		} catch (IOException ex) {
-			System.out.println("Could not delete Bait");
-		}
-	}
+            PrintWriter pw = new PrintWriter(new FileWriter(fileName, false));
+            pw.print(output);
+            pw.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println("Bait file not found");
+        } catch (IOException ex) {
+            System.out.println("Could not delete Bait");
+        }
+    }
 }

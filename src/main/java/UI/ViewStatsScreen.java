@@ -11,6 +11,7 @@ import Backend.LogSessionManager;
 import Backend.SpeciesManager;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Murrayy
@@ -22,18 +23,22 @@ public class ViewStatsScreen extends javax.swing.JFrame {
      */
     public ViewStatsScreen() {
         initComponents();
-        
+
+        //recieves all sessions
         String sessions = LogSessionManager.getAllSessions();
         sessionsTextArea.setText(sessions);
-        
-       int totalFish = LogSessionManager.getNumFish();
-      totalFishTextField.setText(Integer.toString(totalFish));
-      
-      int timeSpent = LogSessionManager.getNumHours();
-      totalHoursTextField.setText(Integer.toString(timeSpent));
-      
-      int numsessions = LogSessionManager.getNumSessions();
-      numSessionsTextField.setText(Integer.toString(numsessions));
+
+        //recieves total number of fish
+        int totalFish = LogSessionManager.getNumFish();
+        totalFishTextField.setText(Integer.toString(totalFish));
+
+        //recieves total hours spent
+        int timeSpent = LogSessionManager.getNumHours();
+        totalHoursTextField.setText(Integer.toString(timeSpent));
+
+        //recieves total number of sessions
+        int numsessions = LogSessionManager.getNumSessions();
+        numSessionsTextField.setText(Integer.toString(numsessions));
     }
 
     /**
@@ -168,7 +173,7 @@ public class ViewStatsScreen extends javax.swing.JFrame {
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         // TODO add your handling code here:
         dispose();
-        new  MainScreen().setVisible(true);
+        new MainScreen().setVisible(true);
     }//GEN-LAST:event_homeButtonActionPerformed
 
     /**

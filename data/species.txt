@@ -1,4 +1,6 @@
 Couta
 Shad
- BlackTail
 Karenteen
+ Snoek
+Mackerel 
+Trout

@@ -20,6 +20,7 @@ public class LogSessionManager {
 
     private static String fileName = "data//Session.txt";
 
+    //Saves information to Session.txt
     public static void logSession(String userName, String date, String location, String targetSpecies, String baitUsed, String weather, String timeSpent, String timeOfArrival, String amountFish, String speciesCaught) {
         try {
             PrintWriter pw = new PrintWriter(new FileWriter(fileName, true));
@@ -30,6 +31,7 @@ public class LogSessionManager {
         }
     }
 
+    //Gets all sessions in a multilined string
     public static String getAllSessions() {
         //read these in the same order as they were saved
         try {
@@ -71,6 +73,8 @@ public class LogSessionManager {
             return null;
         }
     }
+
+    //Gets the total number of fish caught throughout all logged sessions.
     public static int getNumFish() {
         //read these in the same order as they were saved
         try {
@@ -101,7 +105,7 @@ public class LogSessionManager {
                 String speciesCaught = linesc.next();
 
                 numFish += Integer.parseInt(amountFish);
-                linesc.close(); 
+                linesc.close();
 
             }
             sc.close();
@@ -111,7 +115,8 @@ public class LogSessionManager {
         }
         return 0;
     }
-    
+
+    //Gets the total number of hours spent from all logged sessions.
     public static int getNumHours() {
         //read these in the same order as they were saved
         try {
@@ -152,7 +157,8 @@ public class LogSessionManager {
         }
         return 0;
     }
-    
+
+    //Gets the total number of sessions logged.
     public static int getNumSessions() {
         //read these in the same order as they were saved
         try {
@@ -160,7 +166,7 @@ public class LogSessionManager {
             int numsessions = 0;
 
             while (sc.hasNextLine()) {
-                
+
                 //get line into string
                 //new scanner on line (use # delimeter)
                 //get each data point
@@ -184,7 +190,7 @@ public class LogSessionManager {
 
                 numsessions += 1;
                 linesc.close();
-                
+
             }
             sc.close();
             return numsessions;
